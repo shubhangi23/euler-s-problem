@@ -3,18 +3,14 @@ class LongestCol
 {
 	public static void main(String args[])
 	{
-		Scanner scanner = new Scanner(System.in);
-		int t = scanner.nextInt();
-		while(t>0)
-		{
-			int n = scanner.nextInt();
-			int length;
+		int length;
 			long seq;
-			int num =0 , lenF =0;
+			int num =0 , lenF =0 ,tlen =0;
 			int cach[] = new int[5000001];
 			cach[0] = 0;
 			cach[1] = 1;
-			for(int i = 2; i<=n; i++)
+			int mnu[]  = new int[5000001];
+			for(int i = 2; i<=5000000; i++)
 			{
 				length = 0;
 				seq = (long)i;
@@ -38,11 +34,33 @@ class LongestCol
 				if(length>=lenF)
 				{
 					lenF = length;	
-					num = i;
 				}
 			}
-			System.out.println(num);
+			tlen = 0;
+			int tnum = 0;
+			for(int i =2; i<=5000000 ; i++)
+			{
+				
+				if(cach[i]>=tlen)
+				{
+					tlen = cach[i];
+					tnum = i;
+					mnu[i] = tnum;
+				}
+				else
+				{
+					mnu[i] = tnum;
+				}
+			}
+		Scanner scanner = new Scanner(System.in);
+		int t = scanner.nextInt();
+		while(t>0)
+		{
+			int n = scanner.nextInt();
+			
+			System.out.println(mnu[n]);
 			t--;
 		}
 	}
+	
 }
